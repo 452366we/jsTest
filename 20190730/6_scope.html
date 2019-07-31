@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6_scope</title>
+</head>
+<body>
+<script>
+    var a=10;
+    function fun(){
+    var a=20; //如果去掉var，又会输出什么？
+    a++;
+    console.log(a);
+    }
+    fun();//?
+    console.log(a)//?
+</script>
+</body>
+</html>

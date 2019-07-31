@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4_arguments</title>
+</head>
+<body>
+<script>
+   //定义一个函数pay，就能支持三种支付方式！
+   function pay(){
+       //
+       if(arguments.length==0){
+           console.log("手机支付...");
+       }else if(arguments.length==1){
+           console.log(`现金支付：收您${arguments[0]}元`);
+       }else{
+           console.log(`刷卡支付：从您卡${arguments[0]}扣款${arguments[1]}元`)
+       }
+   }
+   pay(100);
+   pay();
+   pay("6553 1234","123456"); 
+</script>
+</body>
+</html>

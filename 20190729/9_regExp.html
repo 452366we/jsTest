@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>9_regExp</title>
+</head>
+<body>
+<script>
+    let arr=["白鹭","晴天","紫烟","明月"];
+    //let reg=arr.join("|");
+    let reg=new RegExp(arr.join("|"));
+    //请用户输入消息
+    let msg=prompt("请输入要查找的内容");
+    let i=msg.search(reg);
+    if(i!=-1){//如果包含
+        //就提示包含敏感词，禁止发送
+        document.write("<h1 style=\"color:red\">包含敏感词！禁止发送</h1>");//今后几乎不用
+    }else{//否则
+        //就提示然哥：xxx
+        document.write(`<h1>然哥说：“${msg}”</h1>`);
+    }
+</script>
+</body>
+</html>

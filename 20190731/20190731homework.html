@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>20190730homework</title>
+</head>
+<body>
+    <script>
+        //1.
+        function fun(){
+            for(var i=0,arr=[];i<3;i++){
+                arr[i]=function(){
+                    console.log(i);
+                }
+            }
+            return arr;
+        }
+        var funs=fun();
+        funs[0]();
+        funs[1]();
+        funs[2]();
+        //2.
+        function change(o){
+            o.name="西西";//第一次创建的对象在change函数作用域内o，但是这个地址是指向外部全局变量的o的地址
+            o={};//重新创建新对象，断开与外部的链接
+            o.name="小红";
+        }
+        var a=1
+        var o={name:"小静",age:11}
+        change();
+        console.log(o);//{name:"西西",age:11}
+    </script>
+</body>
+</html>

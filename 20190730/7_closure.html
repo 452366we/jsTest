@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7_closure</title>
+</head>
+<body>
+<script>
+    //定义一个函数，帮小孩儿管理压岁钱
+    //保存总钱数：total
+    //每花一笔钱，就从total中减掉一笔，并输出花了xx，还剩xx
+    //1.用外层函数包裹受保护的变量和内层函数
+    function parent(){
+        var total=1000;
+        //2.外层函数将内层函数return到外部！
+        return function pay(money){
+            total-=money;
+            console.log(`花了${money}元，还剩${total}元`)
+        }
+    }
+    //3.调用外层函数，获得内层函数返回的函数对象，保存在变量中，反复使用
+    var pay=parent();
+    /* pay=function(money){
+            total-=money;
+            console.log(`花了${}元，还剩${total}元`)
+        }
+    */
+    //问题：局部变量total未释放，并且反复使用
+    pay=null;
+</script>
+</body>
+</html>

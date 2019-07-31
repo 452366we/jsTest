@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3_prototype</title>
+</head>
+<body>
+<script>
+    //描述所有学生对象统一的结构
+    //要求：
+    //所有学生都有姓名，年龄两个属性
+    //所有学生都会自我介绍
+    function Student(sname,sage){
+        this.sname=sname;
+        this.sage=sage;
+    }
+    //在Student的老公中添加一个introSeltf，让所有孩子共用
+    Student.prototype.introSelf=function(){
+        console.log(`I'm ${this.sname},I'm ${this.sage}`);
+    }
+    Student.prototype.className="初一二班";
+    //用构造函数，反复创建三个学生对象
+    var lilei = new Student("Li Lei",11);
+    lilei.introSelf();
+    console.log(lilei);
+    var hmm = new Student("Han MeiMei",12);
+    hmm.introSelf()
+    console.log(hmm);
+    var lily = new Student("Lily",13);
+    lily.introSelf();
+    console.log(lily);
+</script>
+</body>
+</html>

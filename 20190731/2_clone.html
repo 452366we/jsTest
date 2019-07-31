@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2_clone</title>
+</head>
+<body>
+<script>
+    /*鄙视：克隆一个对象*/
+    var lilei={sname:"li lei",sage:"11"};
+    function clone(obj){
+        //1.创建一个新的空对象
+        var newObj={};
+        for(var key in obj){
+            //2.遍历原对象中每个属性和属性值，每遍历一个属性，就为新对象添加一个同名的属性，值也为原对象中同名属性值
+            newObj[key]=obj[key];
+        }
+        //3.遍历结束后
+        return newObj;
+    }
+    var li=clone(lilei);
+    console.log(li);
+    console.log(lilei);
+    console.log(li == lilei);
+</script>
+</body>
+</html>

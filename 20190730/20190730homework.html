@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>20190730homework</title>
+</head>
+<body>
+    <script>
+       /* 1. 定义一个函数，可计算任意个数字的和
+	function add(){
+
+	}
+	console.log(
+		add(1,2,3), //6
+		add(1,2,3,4,5), //15
+		add(1,2,3,4,5,6,7) //28
+    )*/
+    function add(){
+        //定义变量保存每次累加的和
+        var sum=0;
+        //遍历arguments中每个实参值
+        for(var i=0;i<arguments.length;i++){
+            //每遍历一个实参值，就累加到sum上
+            sum+=arguments[i];
+        }
+        //返回sum
+        return sum;
+    }
+    console.log(add(2,5,4,6,7))
+    /*2. 定义一个取号机函数getNum()，可反复输出一个递增的不重复的数字
+        ... ...
+        var getNum=?;
+        getNum();//1
+        getNum();//2
+        //试图用同名变量篡改序号为0
+        xxx=0;
+        getNum();//3
+    */
+    function parent(){
+        var i=0;
+        return function(){
+            console.log(++i);
+        }
+    }
+    var getNum=parent();
+    getNum();
+    getNum();
+    /*3. function fun(){
+        var n=999;
+        nAdd=function(){ n++ }
+        return function(){
+            console.log(n)
+        }
+    }
+    var getN=fun();
+    getN();//999
+    nAdd();
+    getN();//1000
+    */
+    </script>
+</body>
+</html>
