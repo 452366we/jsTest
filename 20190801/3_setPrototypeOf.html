@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3_setPrototype</title>
+</head>
+<body>
+<script>
+   function Student(sname,sage){
+       console.log(`I'm ${this.name},I'm ${this.sage}`);
+   } 
+   var lilei=new Student("Li Lei",11);
+   var hmm=new Student("Han Meimei",12);
+   var father={
+       bal:1000000000000000,
+       car:"infiniti"
+   }
+   //hmm.__proto__=father;
+   Object.setPrototypeOf(hmm,father);
+   console.log(hmm.bal,hmm.car);
+   console.log(hmm);
+   console.log(lilei.bal,lilei.car);
+   console.log(lilei);
+</script>  
+</body>
+</html>

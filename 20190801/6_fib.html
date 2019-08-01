@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6_fib</title>
+</head>
+<body>
+<script>
+    //养兔子
+    //1月 2月 3月 4月
+    //1   1   2  3   5
+    //i<3 f(1)=1 f(2)=1
+    //i>=3 f(n)=f(n-1)+f(n-2)
+    /*function fib(n){
+    //arguments.callee=当前函数自己_fib
+        if(n<3){
+            return 1;
+        }else{
+            return arguments.callee(n-1)+arguments.callee(n-2);
+        }
+    }*/
+    function fib(n){
+        if(n<3){
+            return 1;
+        }else{
+            //声明三个盒子：
+            var f1=1,f2=1,fn;
+            for(var i=3;i<=n;i++){
+                fn=f1+f2;//先计算f1+f2=fn
+                //为下一轮做准备
+                f1=f2;//把f2给f1
+                f2=fn;//把fn给f2
+            }
+            return fn;
+        }
+    }
+    console.log(fib(10));
+</script>
+</body>
+</html>
