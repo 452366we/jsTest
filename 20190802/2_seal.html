@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>8_getter&setter</title>
+</head>
+<body>
+<script>
+    "use strict";
+    var eric={
+        eid:1001,//只读
+        ename:"埃里克",//禁止删除
+        salary:12000//禁止遍历
+    };
+    //禁止删除ename属性
+    //禁止for in遍历salary属性
+    Object.defineProperties(eric,{
+        eid:{writable:false},
+        salary:{enumerable:false}
+    })
+    //密封对象的结果
+    Object.seal(eric);
+    //尝试重新打开writable开关
+    Object.defineProperties(eric,"eid",{
+        writable:true,
+        configurable:true
+    })
+    //eric.eid=-2;//严格模式防止修改
+    //尝试删除ename属性
+    //delete eric.ename;//seal防止删除
+    //试图遍历eric对象的所有属性值(含薪资)
+    for(var key in eric){
+        console.log(`${key} : ${eric[key]}`)
+    }//enumerable：false防止枚举
+    
+    //console.log(eric.salary);
+    //console.log(eric);
+</script>
+</body>
+</html>

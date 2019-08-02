@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6_bind</title>
+</head>
+<body>
+<script>
+    function calc(base, bonus1, bonus2){
+        console.log(`${this.ename}的总工资是：${base+bonus1+bonus2}`)
+    }
+    
+    var lilei={ename:"Li Lei"};
+    var hmm={ename:"Han Meimei"};
+    
+    //lilei觉得总是跟别人共用一个calc()函数，不方便！想买一个自己专属的calc()函数
+    var lcalc=calc.bind(lilei,10000);
+    //不是调用calc()的意思！
+    //而是再新创建一个和原calc()功能完全一样的lcalc()函数，并永久替换lcalc()函数中的this为lilei
+    //从此再调用新lcalc()函数时，不再需要.call()，也不再需要每次都传入lilei
+    lcalc(10000,1000,2000);
+    lcalc(10000,2000,3000);
+</script>
+</body>
+</html>

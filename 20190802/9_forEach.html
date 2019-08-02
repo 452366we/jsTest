@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>9_forEach</title>
+</head>
+<body>
+<script>
+    var nums=[1,2,3,4,5];
+    //对原数组中每个元素*2
+    nums.forEach((value,i,arr)=>{
+        arr[i]*=2;
+        value*=2;//仅修改按值传递时复制的副本，原数组中的原位置不变
+    })
+    console.log(nums);
+    
+    var objs=[{x:1},{x:2},{x:3},{x:4}];
+    objs.forEach((value,i,arr)=>{
+        value.x*2;
+    })
+    console.log(objs);
+</script>
+</body>
+</html>

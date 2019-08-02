@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7_indexOf</title>
+</head>
+<body>
+<script>
+    //红球：1~33之间 随机选6个不重复的
+    //蓝球：1~16之间 随机选1个
+    var reds=[];
+    //只要reds中少于6个球
+    while(reds.length<6){
+        var red=Math.ceil(Math.random()*33);
+        //如果reds中不包含这次的red
+        if(reds.indexOf(red)==-1){
+            reds.push(red);
+        }
+    }
+    //将红球升序排列
+    reds.sort((a,b)=>{return a-b});
+    console.log(reds);
+    var blue=Math.ceil(Math.random()*16);
+    console.log(blue);
+</script>
+</body>
+</html>

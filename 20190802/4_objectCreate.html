@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4_objectCreate</title>
+</head>
+<body>
+<script>
+    var father={
+        bal:100000000000000000,
+        car:"infiniti"
+    }
+    //创建一个子对象hmm，继承father
+    //并为hmm添加自由属性phone
+    var hmm=Object.create(father,{
+        //必须用defineProperties中的语法
+        phone:{
+            value:"iPhone XS",
+            writable:true,
+            enumerable:true,
+            configurable:false
+        }
+    });
+    //结果：hmm有三个属性可用：自己的phone，和爹的bal和car
+    console.log(hmm);
+    console.log(hmm.bal,hmm.car);
+</script>
+</body>
+</html>

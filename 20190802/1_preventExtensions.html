@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1_preventExtensions</title>
+</head>
+<body>
+<script>
+    "use strict";
+    var eric={
+        eid:1001,
+        ename:"埃里克"
+    };
+    //设置eric对象的eid属性只读
+    Object.defineProperty(eric,"eid",{
+        writable:false
+    })
+    //组织对eric对象添加任何扩展属性
+    Object.preventExtensions(eric);
+    eric.eid=-2;
+    eric.Eid=-2;//觉得原来的eid不好用，恶意添加一个新的不同名称的属性
+    console.log(eric);
+</script>
+</body>
+</html>

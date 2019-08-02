@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>8_every</title>
+</head>
+<body>
+<script>
+    var arr1=[1,2,3,4,5];
+    var arr2=[2,4,6,4,2];
+    //哪个全是偶数组成呢？
+    console.log(
+        arr1.every((value,i,arr)=>{
+            return i<arr.length-1?value<=arr[i+1]:true;
+        }),
+        arr2.every((value,i,arr)=>{
+            return i<arr.length-1?value<=arr[i+1]:true;
+        })
+    )
+</script>
+</body>
+</html>
