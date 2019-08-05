@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1_map</title>
+</head>
+<body>
+<ul id="ulScores">
+</ul>
+<script>
+    var scores=[85,72,90,95];
+    //1.遍历每个成绩，将每个成绩变为一个<li></li>元素，放入新数组中
+    var newArr=scores.map((elem)=>{
+        return `<li>${elem}</li>`
+    })
+    //2.将新数组无缝拼接为字符串
+    var html=newArr.join("");
+    console.log(html); 
+    //3.将字符串赋值给ul的innerHTML
+    //补：所有id属性，自动会变为全局变量，不用找，可直接使用
+    ulScores.innerHTML=html;
+
+    ulScores.innerHTML=scores.map((elem)=>{
+        return `<li>${elem}</li>`
+    }).join("");
+
+</script>
+</body>
+</html>

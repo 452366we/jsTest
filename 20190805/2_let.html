@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2_let</title>
+</head>
+<body>
+<script>
+    var t=0;//准备累加每个任务函数执行的时间
+    function task1(){
+        console.log(`任务1耗时0.3s`);
+        t+=0.3;
+    };
+    
+
+    //let使用
+    function task2(){
+        console.log(`任务2耗时0.8s`);
+        t+=0.8;
+
+        var err=true;//模拟出错的变量
+        if(err==true){//let将if{}也变成了一级作用域！实体墙！
+        //(function(){//let自动加的
+            //let t=123;//报错 Uncaught SyntaxError: Identifier 't' has already been declared
+            console.log(t);//报错 Uncaught ReferenceError: t is not defined
+            //浏览器报错：Uncaught ReferenceError: a is not defined
+            //就获得出错的时间
+            //let阻止了局部的t被声明提前
+            let t=new Date(); //_t
+            //并输出出错的提示日志
+            console.log(`出错了，at：${t.toLocaleDateString()}`); //_t
+        //})();//let自动加的
+            
+        }
+        {let t=1;}
+    }
+
+    task1();
+    task2();
+    console.log(`共耗时${t}s`);
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7_rest</title>
+</head>
+<body>
+<script>
+    /*定义函数add，可执行任意多个数字的加法，求和*/
+    var add=(...nums)=>{
+        var sum=0;
+        for(var val of nums){
+            sum+=val;
+        }
+        return sum;
+    }
+    console.log(add(1,2,3,4),add(3,4,5))
+    /*工资有多少项，不知道*/
+    function calc(ename,...arr){
+        console.log(
+            `${ename}的总工资是：${arr.reduce((prev,elem)=>prev+elem,0)}`
+            )
+    }
+    calc("Li Lei",10000,2000,3000)
+    calc("Han Meimei",3000,2000,3000,4000)
+</script>
+</body>
+</html>

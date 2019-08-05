@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>11_destruct</title>
+</head>
+<body>
+<script>
+//定义制作西红柿鸡蛋面的函数
+/*function cook({
+  //配对:变量
+    dan:dan,
+    cai:cai,
+    mian:mian
+})*/
+function cook({dan="鸡蛋",cai="西红柿",mian="面"}){
+    /*dan=dan||"鸡蛋";
+    cai=cai||"西红柿";
+    mian=mian||"面";*/
+    console.log(`炒${dan}`)
+    console.log(`炒${cai}`)
+    console.log(`炒${cai}和${dan}`)
+    console.log(`煮${mian}`)
+    console.log(`把${mian}和${cai}${dan}拌在一起`)
+    return `热腾腾的${cai}${dan}${mian}`;
+}
+//周一: 
+var wan=cook({});
+console.log(`获得一碗:${wan}`);
+//周二:
+wan=cook({dan:"辣条",cai:"黄瓜",mian:"米线"});
+console.log(`获得一碗:${wan}`);
+//周三: 
+wan=cook({dan:"火腿肠"})
+//         ↓ undefined  undefined
+//  cook(dan,   cai,      mian)
+console.log(wan);
+//周四:
+wan=cook({cai:"黄瓜"})
+console.log(wan);
+//周五: 
+wan=cook({cai:"榴莲",mian:"米饭"})
+console.log(wan);
+</script>
+</body>
+</html>

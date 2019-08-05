@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3_arrow</title>
+</head>
+<body>
+<script>
+var arr=[12,3,123,23,1,2];
+arr.sort((a,b)=> a-b);
+console.log(String(arr));
+
+var str="you can you up";
+str=str.replace(/\b[a-z]/g,kw=>kw.toUpperCase());
+console.log(str);
+
+var nums=[1,2,3,4,5];
+nums.forEach((elem,i,arr)=> arr[i]*=2)
+console.log(String(nums));
+
+var nums=[1,2,3,4,5];
+var evens=nums.map(elem=> elem*2);
+console.log(String(nums));
+console.log(String(evens));
+
+setTimeout(()=>console.log("boom!!!"),3000);
+
+(()=>console.log(`我是匿名函数自调！`))()
+</script>
+</body>
+</html>

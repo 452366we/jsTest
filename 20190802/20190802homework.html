@@ -8,8 +8,21 @@
 </head>
 <body>
 <script>
-    //1.如何用ES5实现实现两种类型间的继承--手写
+    //1.如何用ES5实现实现两种类型间的继承--手写 
+    /*
+      第一步：抽象父类型（相同的属性结构定义在父类型的构造函数中；相同的方法定义在父类型的原型对象中）；
+      第二步：让子类型继承父类型
+       (1)在子类型构造函数中借用父类型构造，extends或用call/aplly指定this
+       (2)让子类型原型对象继承父类原型对象，Obeject.setPrototypeOf(子类型构造.prototype,父类型构造.prototype)
+    */
     //2.如何判断一个对象是不是数组？共有几种方法？--手写
+    /*
+    0.typeof 只能区分基础类型和function
+    1.isPrototypeOf
+    2.instanceof
+    3.class
+    4.isArray
+    */
     //3.统计一个字符串中每个字符出现的个数，哪个字符出现的次数最多，几次
     var str="hello world";
     var arr=str.split("");
@@ -26,30 +39,32 @@
     },{})
     console.log(res);
     console.log(`${arr[pos]}出现次数最多，共出现${max}次`);//无法处理最大出现次数相同时候后面的字符串
-    //4.以下代码会不会报错，如果不报错输出什么，为什么
+    //4.以下代码会不会报错，如果不报错输出什么，为什么 in操作符
     var y=10;
     if(!(x in window)){
         var x=10;
     }else{
         ++y;
     }
-    alert(x);
-    alert(y);
+    alert(x);//undefined
+    alert(y);//11
     //5.以下代码会不会报错，如果不报错输出什么，为什么
     var a={n:1};
     var b=a;
-    a.x=a;
-    console.log(a.x);
-    console.log(b.x);
+    var c=b;
+    a.x=a=b={n:2};
+    console.log(a.x);//undefined
+    console.log(b.x);//undefined
+    console.log(c.x);//{n:2}
     //6.以下代码会不会报错，如果不报错输出什么，为什么
-    setTimeout(()=>console.log('a'),0);
+    setTimeout(()=>console.log('a'),0);//5.a
     var p=new Promise((resolve)=>{
-        console.log('b');
+        console.log('b');//1.b
         resolve();
     });
-    p.then(()=>console.log('c'));
-    p.then(()=>console.log('d'));
-    console.log('e');
+    p.then(()=>console.log('c'));//3.c
+    p.then(()=>console.log('d'));//4.d
+    console.log('e');//2.e
 </script>
 </body>
 </html>
