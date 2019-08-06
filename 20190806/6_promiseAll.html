@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6_promiseAll</title>
+</head>
+<body>
+<script>
+    function a(){
+        return new Promise(
+            function(resolve,err){
+                var data="123";
+                console.log(`a起跑`);
+                setTimeout(function(){//异步
+                    console.log(`a到达终点`);
+                    resolve(data); 
+                },6000)
+            }
+        )
+    }
+    function b(data){
+        return new Promise(
+            function(resolve,err){
+                var data="456";
+                console.log(`b起跑`);
+                setTimeout(function(){//异步
+                    console.log(`b到达终点`);
+                    resolve(data);
+                },2000)
+            }
+        )
+    }
+    function c(data){
+        return new Promise(
+            function(resolve,err){
+                var data="789";
+                console.log(`c起跑`);
+                setTimeout(function(){//异步
+                    console.log(`c到达终点`);
+                    resolve(data);
+                },4000)
+            }
+        )
+    }
+    Promise.all([//数组中要求必须传入new Promise对象
+        a(),//new Promise对象
+        b(),//new Promise对象
+        c() //new Promise对象
+    ]).then(arr=>console.log(`结束任务！收到以下数据[${arr}]`));
+    //按传入顺序输出，与调用函数顺序无关
+</script>
+</body>
+</html>

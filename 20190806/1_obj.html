@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1_obj</title>
+</head>
+<body>
+<script>
+    var eid=1001;
+    function introSelf(){
+        console.log(`我的编号是${this.eid}`)
+    }
+    var friends=["然然","亮亮","东东"]
+    var eric={
+        eid,
+        ename:"埃里克",
+        introSelf,
+        friends,
+        run(){console.log(`${this.ename}在奔跑...`)}
+    }
+    eric.run()
+</script>
+</body>
+</html>

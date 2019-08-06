@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7_es7</title>
+</head>
+<body>
+<script>
+    function a(){
+        return new Promise(
+            function(resolve,err){
+                var data="123";
+                console.log(`a起跑,携带着${data}`);
+                setTimeout(function(){//异步
+                    if(Math.random()<0.8){
+                        console.log(`a到达终点传递${data}`);
+                        resolve(data);
+                    }else{
+                        console.log(`未传输成功`)
+                        err(`出现错误`)
+                    }
+                },6000)
+            }
+        )
+    }
+    function b(data){
+        return new Promise(
+            function(resolve,err){
+                console.log(`b起跑,携带着${data}`);
+                setTimeout(function(){//异步
+                    if(Math.random()<0.8){
+                        console.log(`b到达终点传递${data}`);
+                        resolve(data);
+                    }else{
+                        console.log(`未传输成功`)
+                        err(`出现错误`)
+                    }
+                },2000)
+            }
+        )
+    }
+    function c(data){
+        return new Promise(
+            function(resolve,err){
+                console.log(`c起跑,携带着${data}`);
+                setTimeout(function(){//异步
+                    if(Math.random()<0.8){
+                        console.log(`c到达终点传递${data}`);
+                        resolve(data);
+                    }else{
+                        console.log(`未传输成功`)
+                        err(`出现错误`)
+                    }
+                },4000)
+            }
+        )
+    }
+    /*a().then(b).then(c).then(()=>console.log("结束任务！")).catch((err)=>{console.log(err)});*/
+    //执行a的内容，创建new Promise对象并返回
+    (async function(){
+        try{
+            var res=await a();
+            //await代替了.then()
+            res=await b(res);
+            await c(res);
+            console.log("结束任务！")
+        }catch(err){
+            console.log(err)
+        } 
+    })()
+</script>
+</body>
+</html>

@@ -9,12 +9,32 @@
 <body>
 <script>
     //1.不声明第三个变量，变换两个变量中的值，共有几种方法
+    /*
+    方案一：a+=b;b=a-b;a-=b;
+    方案二：a^=b;b^=a;a^=b;
+    方案三：a=[a,b];b=a[0];a=a[1];
+    方案四：a=[b,b=a][0];
+    方案五：a={a:b,b:a};b=a.b;a=a.a;
+    方案六：[a,b]=[b,a];
+    */
     //2.
-    for(var i=0;i<5;i++){
+    /*for(var i=0;i<5;i++){
         setTimeout(function(){
             console.log(i)//打印5次5
         },50)
+    }*/
+    //3.
+    function fn(a){
+        console.log(a);
+        function a(){}
+        console.log(a);
+        var a=123;
+        console.log(a);
+        var b=function(){}
+        console.log(b);
+        function d(){}    
     }
+    fn(1);
 </script>
 </body>
 </html>

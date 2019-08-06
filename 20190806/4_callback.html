@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4_callback</title>
+</head>
+<body>
+<script>
+    function a(callback){
+        console.log("a起跑...");
+        setTimeout(function(){//异步
+            console.log("a到达终点");
+            //在a的最后一步执行完，自动调用出发时提前传入的callback任务
+            callback();
+        },6000)
+    }
+    function b(callback){
+        console.log("b起跑...");
+        setTimeout(function(){//异步
+            console.log("b到达终点");
+            callback();
+        },2000)
+    }
+    function c(callback){
+        console.log("c起跑...");
+        setTimeout(function(){//异步
+            console.log("c到达终点");
+            callback();
+        },4000)
+    }
+    a(
+        function(){
+            b(function(){
+                c(
+                    function(){console.log("比赛结束")}
+                );
+            });
+        }
+    );
+    
+</script>
+</body>
+</html>

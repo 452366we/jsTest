@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3_extends</title>
+</head>
+<body>
+<script>
+    class Enemy{
+        constructor(x,y,award){
+            this.x=x;
+            this.y=y;
+        }
+        fly(){
+            console.log(`飞行到x：${this.x}，飞行到y：${this.y}位置`);
+        }
+    }
+    class Parachute extends Enemy{
+        constructor(x,y,award){
+            super(x,y);//请奶奶先把共有的两个属性装到子对象上
+            this.award=award;
+        }
+        getAward(){
+            console.log(`击落一个降落伞，奖励${this.award}`);
+        }
+    }
+    class Plane extends Enemy{
+        constructor(x,y,score){
+            super(x,y);//请奶奶先把共有的两个属性装到子对象上
+            this.score=score;
+        }
+        getScore(){
+            console.log(`击落一个降落伞，奖励${this.score}`);
+        }
+    }
+    var s1=new Parachute(10,20,"1 life");
+    s1.fly();
+    var p1=new Plane(20,30,"5 scores");
+    p1.fly();
+</script>
+</body>
+</html>
