@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button>click me</button>
+    <button>click me</button>
+    <button>click me</button>
+    <button>click me</button>
+    <button>click me</button>
+    <button>click me</button>
+<script>
+    //定义一个函数，遍历一个指定的父元素下的所有子元素
+    //页面上有多个完全相同按钮，不确定数量：点哪个按钮，报出自己是第几个
+    let btns=document.getElementsByTagName("button");
+    /*for(let i=0;i<btns.length;i++){
+        btns[i].onclick=function(){
+            alert(`我是第${i+1}个button`)
+        }
+    }*/
+    //自调用
+    /*
+    for(var i=0;i<btns.length;i++){
+        (function(i){
+            btns[i].onclick=function(){
+                alert(`我是第${i+1}个button`)
+            }
+        })(i);
+    }
+    */
+    //闭包
+    for(var i=0;i<btns.length;i++){
+        function parent(i){
+            return btns[i].onclick=function(){
+                alert(`我是第${i+1}个button`)
+            }
+        }
+        parent(i);
+    }
+</script>
+</body>
+</html>

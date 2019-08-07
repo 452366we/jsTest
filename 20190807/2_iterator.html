@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2_iterator</title>
+</head>
+<body>
+    <span>Hello World !</span>
+		<ul id="nav">
+			<li>{{total}}</li>
+			<li>综艺
+				<ul>
+					<li>{{count}}</li>
+					<li>{{count}}</li>
+					<li>{{count}}</li>
+				</ul>
+			</li>
+			<li>{{total}}</li>
+		</ul>
+<script>
+    var count=100,total=2000;
+    function getChildren(parent){
+        //1.先获得当前父元素下的所有直接子元素
+        for(var item of parent.children){
+            if(item.innerHTML=="{{count}}"){
+                item.innerHTML=count;
+            }else if(item.innerHTML=="{{total}}"){
+                item.innerHTML=total;
+            }
+            //如果child有下级直接子元素
+            if(item.children.length>0){
+                arguments.callee(item);
+            }
+        }
+    }
+    getChildren(document.body);
+</script>
+</body>
+</html>

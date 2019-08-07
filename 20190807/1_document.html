@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1_document</title>
+</head>
+<body>
+    <span id="s1">hello</span>
+    <h1>标题一</h1>
+<script>
+    //获得head元素
+    console.log(document.head);
+    //获得head元素下的子元素
+    console.log(document.head.children);
+    //获得body元素
+    console.log(document.body);//body
+    //获得body下的所有直接子元素
+    console.log(document.body.children);//3个
+    //获得span:body下的第一个直接子元素
+    console.log(document.body.firstElementChild);//span
+    //获得script:body下的最后一个直接子元素
+    console.log(document.body.lastElementChild);//script
+    //h1
+    console.log(document.body.firstElementChild.nextElementSibling);
+</script>
+</body>
+</html>
