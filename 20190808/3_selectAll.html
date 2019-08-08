@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3_selectAll</title>
+</head>
+<body>
+    <h2>管理员列表</h2>
+	<table border="1px" width="500px">
+	  <thead>
+		<tr>
+			<th>
+                <label>
+                    <input type="checkbox"/>全选
+                </label>
+            </th>
+			<th>管理员ID</th>
+			<th>姓名</th>
+			<th>操作</th>
+		</tr>
+	  </thead>
+	  <tbody>
+	  	<tr>
+	  		<td><input type="checkbox"/></td>
+	  		<td>1</td>
+	  		<td>Tester</td>
+	  		<td>修改 删除</td>
+	  	</tr>
+	  	<tr>
+	  		<td><input type="checkbox"/></td>
+	  		<td>2</td>
+	  		<td>Manager</td>
+	  		<td>修改 删除</td>
+	  	</tr>
+	  	<tr>
+	  		<td><input type="checkbox"/></td>
+	  		<td>3</td>
+	  		<td>Analyst</td>
+	  		<td>修改 删除</td>
+	  	</tr>
+	  	<tr>
+	  		<td><input type="checkbox"/></td>
+	  		<td>4</td>
+	  		<td>Admin</td>
+	  		<td>修改 删除</td>
+	  	</tr>
+	  </tbody>
+	</table>
+	<button>删除选定</button>
+<script>
+    //点击thead中的全选，让tbody中所有checkbox的checked属性与全选的checked的属性保持一致
+    var hcheck=document.querySelector("thead input");
+    var bcheck=document.querySelectorAll("tbody input");
+    hcheck.onchange=function(){
+        for(var check of bcheck){
+            check.checked=hcheck.checked;
+            check.onchange=function(){
+                if(this.checked==false){
+                    hcheck.checked=false
+                }else if(document.querySelector("tbody input:not(:checked)")==null){//判断用选择器查找的没有被选中的input是否存在
+                    hcheck.checked=true;
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

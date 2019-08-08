@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1_door</title>
+    <style>
+        div{float:left; height: 100px; line-height: 100px; }
+        #d1,#d3{ background-color: #ccff00; }
+        #d2{ cursor: pointer; background-color: #ffcc00; }
+        #d1{
+            width:64px;
+            overflow:hidden;
+            transition:width .5s linear;
+        }
+    </style>
+</head>
+<body>
+    <div id="d1">树形列表</div>
+	<div id="d2">&lt;&lt;</div>
+	<div id="d3">内容的主体</div>
+<script>
+    var d2=document.getElementById("d2");
+    d2.onclick=function(){
+        if(d2.innerHTML=="&lt;&lt;"){
+            d1.style.width="0";
+            d2.innerHTML="&gt;&gt;"
+        }else{
+            d1.style.width="64px";
+            d2.innerHTML="&lt;&lt;"
+        }  
+    }
+</script>
+</body>
+</html>
