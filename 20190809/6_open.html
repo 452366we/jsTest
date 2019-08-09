@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6_open</title>
+    <script>
+        function open1(){
+            window.open("http://tmooc.cn","_self");
+        }
+        function open2(){
+            window.location.replace("http://tmooc.cn");
+        }
+        function open3(){
+            window.open("http://tmooc.cn","_blank");
+        }
+        function open4(){
+            window.open("http://tmooc.cn","tmooc");
+        }
+    </script>
+</head>
+<body>
+    <a href="http://tmooc.cn" target="_self">在当前打开新链接，可后退</a><br>
+    <button onclick="open1()">在当前打开新链接，可后退(js)</button><hr>
+    <button onclick="open2()">在当前窗口打开新链接，不可后退(js)</button><hr>
+    <a href="http://tmooc.cn" target="_blank">在新窗口打开新链接，可打开多个</a><br>
+    <button onclick="open3()">在新窗口打开新链接，可打开多个(js)</button><hr>
+    <a href="http://tmooc.cn" target="tmooc">在新窗口打开新链接，只能打开一个</a><br>
+    <button onclick="open4()">在新窗口打开新链接，只能打开一个(js)</button><hr>
+</body>
+</html>

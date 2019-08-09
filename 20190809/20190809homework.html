@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>20190809homework</title>
+</head>
+<body>
+<script>
+      //1.实现三级联动
+      //2.闭包
+      function fun(n,o){
+          console.log(o);
+          return{
+              fun:function(m){
+                  return fun(m,n)
+              }
+          }
+      }
+      var a=fun(0);
+      a.fun(1);
+      a.fun(2);
+      a.fun(3);
+      var b=fun(0);
+      b.fun(1);
+      b.fun(2);
+      b.fun(3);
+      var c=fun(0).fun(1);
+      c.fun(2);
+      c.fun(3);
+      //3.eventloop in browser
+      setTimeout(()=>console.log('a'),0);
+      var p=new Promise(resolve=>{
+          console.log('b');
+          resolve();
+      });
+      p.then(()=>console.log('c'));
+      p.then(()=>console.log('d'));
+      console.log('e');
+      //4.eventloop in nodejs
+      process.nextTick(function(){
+          console.log(7);
+      });
+      new Promise(function(resolve){
+          console.log(3);
+          resolve();
+          console.log(4);
+      }).then(function(){
+          console.log(5);
+      });
+      process.nextTick(function(){
+          console.log(8);
+      })
+      //5.实现5s后自动关闭页面
+      //6.Promise笔试题
+      /*7.补充代码使下面两个表达式为true
+        (20).add(10).subtract(2)===28;
+        (5).add(2).substract(6)===1;
+        */
+</script>
+</body>
+</html>
