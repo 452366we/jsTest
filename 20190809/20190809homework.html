@@ -10,7 +10,7 @@
 <script>
       //1.实现三级联动
       //2.闭包
-      function fun(n,o){
+      /*function fun(n,o){
           console.log(o);
           return{
               fun:function(m){
@@ -18,43 +18,90 @@
               }
           }
       }
-      var a=fun(0);
-      a.fun(1);
-      a.fun(2);
-      a.fun(3);
-      var b=fun(0);
-      b.fun(1);
-      b.fun(2);
-      b.fun(3);
-      var c=fun(0).fun(1);
-      c.fun(2);
-      c.fun(3);
+      var a=fun(0);//undefined 返回对象a={fun:function(m){return fun(m,0)}}
+      a.fun(1);//执行fun(1,0) 0 返回对象{fun:function(m){return fun(m,1)}}
+      a.fun(2);//执行fun(2,0) 0 返回对象{fun:function(m){return fun(m,2)}}
+      a.fun(3);//执行fun(3,0) 0 返回对象{fun:function(m){return fun(m,3)}}
+      var b=fun(0).fun(1).fun(2).fun(3);//undefined 0 1 2 b={fun:function(m){return fun(m,3)}}
+      var c=fun(0).fun(1);//undefined fun(1,0) 0 返回对象{fun:function(m){return fun(m,1)}}
+      c.fun(2);//fun(2,1)//1 返回对象{fun:function(m){return fun(m,2)}}
+      c.fun(3);//fun(3,1)//1 返回对象{fun:function(m){return fun(m,3)}}*/
       //3.eventloop in browser
-      setTimeout(()=>console.log('a'),0);
+      setTimeout(()=>console.log('a'),0);//5.a
       var p=new Promise(resolve=>{
-          console.log('b');
+          console.log('b');//1.b
+          setTimeout(()=>{console.log('f'),0})//6.f
           resolve();
       });
-      p.then(()=>console.log('c'));
-      p.then(()=>console.log('d'));
-      console.log('e');
-      //4.eventloop in nodejs
+      p.then(()=>console.log('c'));//3.c
+      p.then(()=>console.log('d'));//4.d
+      console.log('e');//2.e
+      //async await
+      console.log('script start');//1.script start
+      async function async1(){
+          await async2()
+          console.log('async1 end')//73以上chrome会第三个打印 5.async1 end
+      }
+      async function async2(){
+          console.log('async2 end')//2.async2 end
+      }
+      async1()
+      setTimeout(function(){
+          console.log('setTimeout')//8.setTimeout
+      },0)
+      new Promise(resolve=>{
+          console.log('Promise')//3.Promise
+          resolve()
+      })
+        .then(function(){
+            console.log('promise1')//6.promise1
+        })
+        .then(function(){
+            console.log('promise2')//7.promise2
+        })
+    console.log('script end')//4.script end
+      //5.eventloop in nodejs
       process.nextTick(function(){
-          console.log(7);
+          console.log(7);//3
       });
       new Promise(function(resolve){
-          console.log(3);
+          console.log(3);//1
           resolve();
-          console.log(4);
+          console.log(4);//2
       }).then(function(){
-          console.log(5);
+          console.log(5);//5
       });
       process.nextTick(function(){
-          console.log(8);
+          console.log(8);//4
       })
-      //5.实现5s后自动关闭页面
-      //6.Promise笔试题
-      /*7.补充代码使下面两个表达式为true
+      //6.实现5s后自动关闭页面
+      //7.Promise笔试题
+      /*
+        //假设有一个服务端接口，可根据条件分别查询三种商品的数量: 
+        http://localhost:5050/?type=a, 
+        http://localhost:5050/?type=b, 
+        http://localhost:5050/?type=c 
+        分别返回a类商品的总数，b类商品的总数，c类商品的总数
+        每个接口，因为数据量很大，所以，可能有3秒的返回延迟。
+        在day03/homework/文件夹下，运行:
+        node server.js
+        可测试以上三个地址: 
+        需求: 在.html网页中如何获得a类, b类, c类商品的总和
+        考虑程序完成的总时间最少。
+        //现只有一个已封装的基本的ajax函数，暂时不支持promise。
+        //步骤: 
+        1. 修改ajax.js中的ajax函数，使其支持Promise
+        2. 使用自己修改好的支持Promise的ajax函数，实现规定的需求。
+      */
+        ajax(
+            "http://localhost:5050/",
+            "get",
+            function(result){
+                console.log(result);
+            },
+            "type=a"
+        )
+      /*8.补充代码使下面两个表达式为true
         (20).add(10).subtract(2)===28;
         (5).add(2).substract(6)===1;
         */
