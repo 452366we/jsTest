@@ -7,6 +7,8 @@
     <title>20190809homework</title>
 </head>
 <body>
+    <h1 id="msg">5s后自动关闭</h1>
+    <a href="javascript:;">留在本页</a>
 <script>
       //1.实现三级联动
       //2.闭包
@@ -27,6 +29,7 @@
       c.fun(2);//fun(2,1)//1 返回对象{fun:function(m){return fun(m,2)}}
       c.fun(3);//fun(3,1)//1 返回对象{fun:function(m){return fun(m,3)}}*/
       //3.eventloop in browser
+      /*
       setTimeout(()=>console.log('a'),0);//5.a
       var p=new Promise(resolve=>{
           console.log('b');//1.b
@@ -74,7 +77,26 @@
       process.nextTick(function(){
           console.log(8);//4
       })
+      */
+      /*
       //6.实现5s后自动关闭页面
+      var msg=document.getElementById("msg");
+      var aBtn=msg.nextElementSibling;
+      var timer=null;
+      var num=5;
+      
+      timer=setInterval(function(){
+          num--;
+          msg.innerHTML=`${num}s后自动关闭`;
+          if(num<1){
+              window.close();
+          }
+      },1000);
+
+      aBtn.onclick=function(){
+          clearInterval(timer);
+      }
+      */
       //7.Promise笔试题
       /*
         //假设有一个服务端接口，可根据条件分别查询三种商品的数量: 
@@ -93,18 +115,64 @@
         1. 修改ajax.js中的ajax函数，使其支持Promise
         2. 使用自己修改好的支持Promise的ajax函数，实现规定的需求。
       */
-        ajax(
-            "http://localhost:5050/",
-            "get",
-            function(result){
-                console.log(result);
-            },
-            "type=a"
-        )
-      /*8.补充代码使下面两个表达式为true
-        (20).add(10).subtract(2)===28;
-        (5).add(2).substract(6)===1;
-        */
+    /*
+    function ajax(url,method,fn,type){
+        return new Promise((resolve,reject)=>{
+                var xhr=new XMLHttpRequest();
+                xhr.onreadystatechange=function(){
+                    if(xhr.readyState==4){
+                        if(xhr.status==200){
+                            //var result=xhr.responseText;
+                            //fn(result);
+                            resolve(JSON.parse(xhr.responseText).count);
+                        }	
+                    }
+                };
+
+                xhr.open(method,url+"?"+type,true);
+
+                if(method=="post"){
+                    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                }
+
+                if(method=="get"){
+                    xhr.send(null);
+                }else if(method=="post"){
+                    xhr.send(type);
+                }
+
+            }
+        )	
+    }
+
+	Promise.all([
+		ajax("http://localhost:5050/","get",function(result){console.log(result);},"type=a"),
+		ajax("http://localhost:5050/","get",function(result){console.log(result);},"type=b"),
+		ajax("http://localhost:5050/","get",function(result){console.log(result);},"type=c")
+	]).then(arr=>{
+        var total=0;
+        for(var count of arr){total+=count;}
+        console.log(`a类、b类、c类商品的总和为${total}`)    
+    });
+
+    (async function(){
+        var total=0;
+        var arr=await Promise.all([
+            ajax("http://localhost:5050/","get",function(result){console.log(result);},"type=a"),
+            ajax("http://localhost:5050/","get",function(result){console.log(result);},"type=b"),
+            ajax("http://localhost:5050/","get",function(result){console.log(result);},"type=c")
+        ]);
+        for(var count of arr){total+=count;};
+        console.log(`a类、b类、c类商品的总和为${total}`);
+    })()
+    */
+    /*
+    //8.补充代码使下面两个表达式为true
+    Number.prototype.add=function(val){return this+val};
+    Number.prototype.subtract=function(val){return this-val};
+    console.log((20).add(10).subtract(2)==28);
+    console.log((5).add(2).subtract(6)==1);
+    */
 </script>
 </body>
 </html>

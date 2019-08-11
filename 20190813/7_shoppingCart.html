@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>7_shoppingCart</title>
+    <style>
+        table{width:600px; text-align:center;
+            border-collapse:collapse;
+        }
+        td,th{border:1px solid black}
+        td[colspan="3"]{text-align:right;}
+    </style>
+</head>
+<body>
+    <table id="data">
+		<thead>
+			<tr>
+				<th>商品名称</th>
+				<th>单价</th>
+				<th>数量</th>
+				<th>小计</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>iPhone6</td>
+				<td>¥4488.00</td>
+                <td>
+                    <button>-</button>
+                    <span>1</span>
+                    <button>+</button>
+                </td>   
+				<td>¥4488.00</td>
+			</tr>
+			<tr>
+				<td>iPhone6 plus</td>
+				<td>¥5288.00</td>
+				<td>
+                    <button>-</button>
+                    <span>1</span>
+                    <button>+</button>
+				</td>
+				<td>¥5288.00</td>
+			</tr>
+			<tr>
+				<td>iPad Air 2</td>
+				<td>¥4288.00</td>
+                <td>
+                    <button>-</button>
+                    <span>1</span>
+                    <button>+</button>
+                </td>
+				<td>¥4288.00</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3">Total: </td>
+				<td>¥14064.00</td>
+			</tr>
+		</tfoot>
+	</table>
+<script>
+    //DOM操作的标准步骤：4步
+    //1.查找触发事件的元素
+    //2.绑定事件处理函数
+        //3.查找要修改的元素
+        //4.修改元素
+
+    let table=document.getElementById("data");
+    table.onclick=function(e){
+        if(e.target.nodeName=="BUTTON"){
+            var self=e.target;
+            var span=self.parentNode.children[1];
+            var single=self.parentNode.previousElementSibling;
+            var price=self.parentNode.nextElementSibling;
+            var total=document.querySelector("tfoot tr td:last-child");
+            //获得的内容转为整型
+            var n=parseInt(span.innerHTML);
+            var count=parseInt(single.innerHTML.slice(1));
+            var number=parseInt(total.innerHTML.slice(1));
+            if(self.innerHTML=="+"){
+                n+=1;
+                number+=count;
+            }else if(n>1){
+                n-=1;
+                number-=count;
+            }
+            span.innerHTML=n;
+            price.innerHTML=`¥${(count*n).toFixed(2)}`;
+            total.innerHTML=`¥${number.toFixed(2)}`;
+        }
+    }
+    
+
+</script>
+</body>
+</html>

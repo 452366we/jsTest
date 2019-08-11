@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10_table</title>
+    <style>
+    table{
+        width:600px; border-collapse:collapse;
+        text-align:center;
+    }
+    td,th{border:1px solid #ccc}
+    </style>
+</head>
+<body>
+    <div id="data">
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>薪资</th>
+                    <th>年龄</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+  <script>
+	var json=[
+        {"ename":"Tom", "salary":11000, "age":25},
+        {"ename":"John", "salary":13000, "age":28},
+        {"ename":"Mary", "salary":12000, "age":25}
+    ];
+    var table=document.getElementById("data").firstElementChild;
+    /*封装创建添加元素方法createAppend(tag,parent)
+    * tag：创建标签名，parent：要追加的父元素名称
+    */
+    function createAppend(tag,parent){
+        var newElem=document.createElement(tag);
+        //如果有要追加父元素才追加元素
+        if(parent!==undefined){
+            parent.appendChild(newElem);
+        }
+        return newElem;
+    }
+
+    var tbody=document.createElement("tbody");
+    
+    tbody.onclick=function(e){
+        if(e.target.nodeName=="BUTTON"){
+            var tr=e.target.parentNode.parentNode;
+            var res=window.confirm(`是否删除${tr.cells[0].innerHTML}?`);
+            if(res){
+                table.deleteRow(tr.rowIndex);
+            }
+        }
+    }
+
+    for(var emp of json){
+        var tr=tbody.insertRow();
+        for(var key in emp){
+            var td=tr.insertCell();
+            td.innerHTML=emp[key];
+        }
+        
+        var td=tr.insertCell();
+        var btn=document.createElement("button");
+        btn.innerHTML="删除";
+        td.appendChild(btn);
+    }
+    //最后统一追加
+    table.appendChild(tbody);
+  </script>
+</body>
+</html>

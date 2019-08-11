@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3_navigator</title>
+</head>
+<body>
+<script>
+    var plugins=navigator.plugins;
+    if(plugins["Chrome PDF Viewer"]===undefined){
+        document.write(`<h1>未安装pdf插件，<a href="javascript:;">点此安装</a></h1>`);
+    }else{
+        document.write(`<h1>已安装pdf插件，可正常浏览pdf文档</h1>`);
+    }
+
+    //微软Edge仿真
+    var ua=navigator.userAgent;
+    document.write(`<h1>${ua}</h1>`);
+    var browser,version;
+    //如果userAgent中包含MSIE，说明一定是IE浏览器
+    if(ua.indexOf("MSIE")!=-1){
+        browser="IE";
+    }else if(ua.indexOf("Trident")!=-1){
+        //如果userAgent中包含Trident却不包含MSIE，说明一定是IE11浏览器
+        browser="IE",version=11;
+    }else if(ua.indexOf("Firefox")!=-1){
+        //如果userAgent中包含Firefox，说明一定是Firefox浏览器
+        browser="Firefox";
+    }else if(ua.indexOf("OPR")!=-1){
+        //如果userAgent中包含OPR，说明一定是Opera浏览器
+        browser="Opera";
+    }else if(ua.indexOf("Edge")!=-1){
+        //如果userAgent中包含Edge，说明一定是Edge浏览器
+        browser="Edge";
+    }else if(ua.indexOf("Chrome")!=-1){
+        //如果userAgent中包含Edge，说明一定是Chrome浏览器
+        browser="Chrome";
+    }else if(ua.indexOf("Safari")!=-1){
+        //如果userAgent中包含Edge，说明一定是Edge浏览器
+        browser="Safari";
+    }
+    document.write(`<h1>浏览器：${browser}</h1>`);
+
+    //如果还不知道浏览器的版本号
+    if(version===undefined){
+        var i=ua.indexOf(browser);
+        i+=browser.length+1;
+        version=parseFloat(ua.slice(i,i+3));
+    }
+    document.write(`<h1>版本号：${version}</h1>`)
+    
+    
+    
+</script>
+</body>
+</html>

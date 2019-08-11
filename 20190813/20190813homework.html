@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>20190813homework</title>
+</head>
+<body>
+<script>
+    //1.将location.search转为对象 地址栏:http://localhost:3000/register?uname=dingding&upwd=123456&favs=running&favs=swimming&favs=basketball 要求：search字符串中的变量名不确定，变量个数也不确定
+    var str="?uname=dingding&upwd=123456&favs=running&favs=swimming&favs=basketball&favs=football";
+    function search2Obj(str){
+        //返回一个对象
+        var arr=str.slice(1).split("&");
+
+        var newObj={};
+        var newArr=[];
+
+        /*
+        for(var i=0;i<arr.length;i++){
+            arr[i]=arr[i].split("=");
+            var key=arr[i][0];
+            var value=arr[i][1];
+
+            if(key in newObj==false){
+                newObj[key]=value;
+            }else if(Array.isArray(newObj[key])){
+                newArr.push(key);
+                newObj[key].push(value);
+                console.log(newObj[key]);
+            }else{
+                newObj[key]=newObj[key].split(" ");
+                newObj[key].push(value);
+            }
+        }
+        */
+
+        for(var i=0;i<arr.length;i++){
+            arr[i]=arr[i].split("=");
+            var key=arr[i][0];
+            var value=arr[i][1];
+
+            if(newObj[key]===undefined){
+                newObj[key]=value;
+            }else{
+                newObj[key]=newArr.concat(newObj[key],value);
+            }
+        }
+        
+        return newObj;
+    };
+    var obj=search2Obj(str);
+	console.log(obj);/*obj:{
+            uname:"dingding",
+            upwd:"123456",
+            favs:[ "running", "swimming", "basketball" ]
+	    }
+     */
+    console.log(obj.uname);//dingding
+    //2.实现计算器效果
+    //3.优化代理案例
+</script>
+</body>
+</html>

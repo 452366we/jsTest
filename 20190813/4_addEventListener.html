@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4_addEventListener</title>
+</head>
+<body>
+    <button id="btnShoot">shoot</button><br>
+    <button id="btnAward">获得跟踪导弹</button><br>
+    <button id="btnBreak">失去跟踪导弹</button><br>
+<script>
+    var btnShoot=document.getElementById("btnShoot");
+    var btnAward=document.getElementById("btnAward");
+    var btnBreak=document.getElementById("btnBreak");
+
+    btnShoot.onclick=function(){
+        console.log(`发射普通子弹...`)
+    }
+
+    function shoot2(){
+            alert(`发射跟踪导弹=>=>=>`)
+    }
+
+    btnAward.onclick=function(){
+        btnShoot.addEventListener("click",shoot2)
+    }
+
+    btnBreak.onclick=function(){
+        btnShoot.removeEventListener("click",shoot2)
+    }
+</script>
+</body>
+</html>

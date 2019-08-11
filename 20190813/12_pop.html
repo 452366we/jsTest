@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>12_pop</title>
+    <style>
+		div{
+            position:fixed;width:100px;height:100px;
+			background-image:url(images/xiaoxin.gif);
+            background-size:100%;
+		}
+	</style>
+</head>
+<body>
+    <div id="pop"></div>
+<script>
+    var canMove=false;
+    var pop=document.getElementById("pop");
+    var offsetX=0;
+    var offsetY=0;
+
+    pop.onmousedown=function(e){
+        canMove=true;
+        offsetX=e.offsetX;
+        offsetY=e.offsetY;
+    }
+
+    window.onmousemove=function(e){
+        if(canMove){
+            var x=e.clientX;
+            var y=e.clientY;
+            var left=x-offsetX;
+            var top=y-offsetY;
+            if(left<0){
+                left=0;
+            }else if(left>innerWidth-100){
+                left=innerWidth-100;
+            };
+            if(top<0){
+                top=0;
+            }else if(top>innerHeight-100){
+                top=innerHeight-100;
+            };
+            pop.style.cssText=`left:${left}px;top:${top}px`
+        }
+    }
+
+    window.onmouseout=function(e){
+        canMove=false;
+    }
+
+    pop.onmouseup=function(e){
+        canMove=false;
+    }
+</script>
+</body>
+</html>

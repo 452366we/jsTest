@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>9_tabs</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        #tab li{
+            float: left; list-style: none;
+        }
+        #tab li a{
+            display:inline-block;
+            text-decoration:none;
+            width: 80px; height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color:#000;
+        }
+        #container{
+            position: relative;
+        }
+        #content1,#content2,#content3{
+            width: 300px;
+            height: 100px;
+            padding:30px;
+            position: absolute;
+            top: 40px;
+            left: 0;
+        }
+        #tab li:first-child,#content1{
+            background-color: #ffcc00;
+        }
+        #tab li:first-child+li,#content2{
+            background-color: #ff00cc;
+        }
+        #tab li:first-child+li+li,#content3{
+            background-color: #00ccff;
+        }
+    </style>
+</head>
+<body>
+    <h2>实现多标签页效果</h2>
+    <div class="tabs">
+        <ul id="tab">
+            <li>
+                <a href="javascript:;" data-click="tab" data-id="content1">10元套餐</a>
+            </li>
+            <li>
+                <a href="javascript:;" data-click="tab" data-id="content2">30元套餐</a>
+            </li>
+            <li>
+                <a href="javascript:;" data-click="tab" data-id="content3">50元包月</a>
+            </li>
+        </ul>
+        <div id="container">
+            <div id="content1">
+            10元套餐详情：<br />&nbsp;每月套餐内拨打100分钟，超出部分2毛/分钟
+            </div>
+            <div id="content2">
+            30元套餐详情：<br />&nbsp;每月套餐内拨打300分钟，超出部分1.5毛/分钟
+            </div>
+            <div id="content3">
+            50元包月详情：<br />&nbsp;每月无限量随心打
+            </div>
+        </div>
+    </div>
+<script>
+    var tab=document.getElementById("tab");
+    var index=10;
+    tab.onclick=function(e){
+        if(e.target.nodeName=="A"){
+            var div=document.getElementById(e.target.getAttribute("data-id"));
+            div.style.zIndex=index++
+            console.log(index);
+        } 
+    }
+</script>
+</body>
+</html>

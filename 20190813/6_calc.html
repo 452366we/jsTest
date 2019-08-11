@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6_calc</title>
+</head>
+<body>
+    <div id="keys">
+            <button>0</button>
+			<button>1</button>
+			<button>2</button>
+			<button>3</button>
+			<button>4</button><br>
+            <button>5</button>
+            <button>6</button>
+			<button>7</button>
+			<button>8</button>
+			<button>9</button><br>
+			<button>C</button>
+			<button>+</button>
+			<button>-</button>
+            <button>*</button>
+            <button>/</button>
+			<button>=</button>
+	</div>
+    <textarea id="sc" style="resize:none;width:200px; height:50px;margin-top:10px" readonly></textarea>
+<script>
+    var keys=document.getElementById("keys");
+    var sc=document.getElementById("sc");
+
+    keys.onclick=function(e){
+        if(e.target.nodeName=="BUTTON"){
+            alert(`${e.target.innerHTML}`)
+        }
+    }
+</script>
+</body>
+</html>
