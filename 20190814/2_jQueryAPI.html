@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2_jQueryAPI</title>
+    <script src="js/jquery-1.11.3.js"></script>
+</head>
+<body>
+    <h1>jQueryAPI特点</h1>
+    <button id="btn1">click me(0)</button>
+    <button id="btn2">click me(0)</button>
+    <button id="btn3">click me(0)</button>
+<script>
+    //DOM
+    /*
+    var btns=document.getElementsByTagName("button");
+
+    for(var btn of btns){
+        btn.onclick=function(){
+            alert(`${this.innerHTML}`)
+        }
+    }*/
+    $("button").click(function(){
+        var n=parseInt($(this).html().slice(9,-1));
+        n++;
+        $(this).html(`click me(${n})`)
+    })
+    
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2_contains</title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <script src="js/jquery-1.11.3.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>jQuery中的选择器——内容过滤选择器</h1>
+
+    <button>提交订单</button>
+    <button>Submit注册信息</button>
+    <button>马上提交</button>
+    <button>清空重填</button>
+
+    <hr/>
+    <div class="alert" id="alert1">
+        第一个警告框
+    </div>
+    <div class="alert" id="alert2">
+        <span class="close">×</span>
+        第一个警告框
+    </div>
+</div>
+<script>
+    //选择包含"提交"二字的按钮，变为绿色按钮
+    $("body>.container>button:contains(\"提交\")").css({"background-color":"green","color":"#fff"})
+    //选中包含.close按钮的.alert元素，让它们变为红色的警告框
+    $("body>.container>.alert:has(.close)").css({"background-color":"red","color":"#fff"})
+    //选中不包含.close按钮的.alert元素，让它们变为绿色的警告框
+    $("body>.container>.alert:not(:has(.close))").css({"background-color":"green","color":"#fff"})
+</script> 
+</body>
+</html>

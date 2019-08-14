@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4_basicFilter</title>
+    <script src="js/jquery-1.11.3.js"></script>
+    <style>
+        ul{
+            list-style:none;
+        }
+        ul>li{
+            float:left;
+            width:180px;
+            height:50px;
+            text-align:center;
+            line-height:50px;
+            border:1px solid #ccc;
+        }
+        /*
+        ul>li:first-child{
+            border-radius:4px 0 0 4px;
+        }
+        ul>li:last-child{
+            border-radius:0 4px 4px 0;
+        }
+        ul>li+li{
+            border-left:none;
+        }*/
+    </style>
+</head>
+<body>
+    <h1>实现按钮组效果</h1>
+    <ul>
+        <li>prev</li>
+        <li>play</li>
+        <li>pause</li>
+        <li>next</li>
+    </ul>
+	<div style="clear:both"></div>
+
+	<h1>实现表格隔行变色效果</h1>
+<script>
+    $("ul>li:first").css("border-radius","4px 0 0 4px");
+    $("ul>li:last").css("border-radius","0 4px 4px 0");
+    $("ul>li:gt(0)").css("border-left","none");
+</script>
+</body>
+</html>

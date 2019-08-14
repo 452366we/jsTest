@@ -7,7 +7,7 @@
     <title>11_scroll</title>
     <style>
         body{height:2000px;}
-        #toTop{position:fixed;bottom:100px;right:0;}
+        #toTop{position:fixed;bottom:100px;right:0;display:none;}
     </style>
 </head>
 <body>
@@ -15,10 +15,49 @@
 		<a href="#">返回顶部</a>
 	</div>
 <script>
+    var toTop=document.getElementById("toTop");
     var a=document.getElementById("toTop").firstElementChild;
+    var scrollTop=0;
+    var init={
+            steps:50,
+            dura:500,
+        }
+    
+    
+    //当页面滚动时
+    window.onscroll=function(){
+        scrollTop=document.body.scrollTop || document.documentElement.scrollTop;
+        if(scrollTop>=500){
+            toTop.style.display="block";
+            console.log(scrollTop);
+        }else{
+            toTop.style.display="none";
+        }
+    }
     a.onclick=function(e){
         e.preventDefault();
+        //window.scrollTo(0,0);
+        //总距离
+        var dist=scrollTop;
+        //总步数
+        var steps=init.steps;
+        //总时间
+        var dura=init.dura;
+        //每步走多长
+        var freq=dist/steps;
+        //每步间隔时间
+        var intval=dura/steps;
+
+        var timer=setInterval(function(){
+            window.scrollBy(0,-freq);
+            steps--;
+            if(steps==0){
+                clearInterval(timer);
+                steps=init.steps;
+            }
+        },intval)
     }
+
 </script>    
 </body>
 </html>
