@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6_attr</title>
+    <style>
+        body {text-align: center;}
+    </style>
+    <script src="js/jquery-1.11.3.js"></script>
+</head>
+<body>
+    <img src="img/1.jpg" data-target="img/1-l.jpg" class="my-small">
+    <img src="img/2.jpg" data-target="img/2-l.jpg" class="my-small">
+    <img src="img/3.jpg" data-target="img/3-l.jpg" class="my-small">
+    <img src="img/4.jpg" data-target="img/4-l.jpg" class="my-small">
+    <hr/>
+    <img src="img/1-l.jpg" class="my-big">
+<script>
+    $("img").click(function(){
+        $(".my-big").attr("src",$(this).attr("data-target"));
+    })
+</script>
+</body>
+</html>

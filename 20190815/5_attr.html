@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5_attr</title>
+    <script src="js/jquery-1.11.3.js"></script>
+</head>
+<body>
+    <h1>操作元素的属性</h1>
+	<img src="img/1.jpg" alt="1">
+<script>
+    var n=4;//定义循环次数
+    $("img").click(function(){
+        var $this=$(this);
+        var $attr=parseInt($this.attr("alt"));
+        $attr++;
+        var i=(($attr-1)%n)+1;
+        $this.attr({src:`img/${i}.jpg`,alt:i});
+    })
+</script>
+</body>
+</html>

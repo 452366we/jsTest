@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>8_class</title>
+    <style>
+        .alert{
+			border:1px solid #a33;
+			color:#922;
+			background:#fee;
+			padding:10px;
+            width:350px;
+            height:100px;
+            position:fixed;
+            /*让div在窗口中垂直和水平都居中*/
+            top:0;
+            left:0;
+            bottom:0;
+            right:0;
+            margin:auto;
+            overflow:hidden;
+		}
+		.alert>.close{
+			float:right;
+			font-weight:bold;
+			opacity:.5;
+			cursor:pointer;
+		}
+		.alert>.close:hover{opacity:1}
+		.fade{ /*定义淡入淡出动画的初始状态,常驻元素*/
+			opacity:0;
+            transition:all 1s ease-in-out;
+		}
+		.in{ /*定义淡入淡出动画的结束状态*/
+            width:350px;
+			opacity:1;
+		}
+    </style>
+    <script src="js/jquery-1.11.3.js"></script>
+</head>
+<body>
+    <button id="btn">click me!</button>
+    <div class="alert fade">
+        <span class="close">×</span>
+        <p>您的浏览器版本太低!请下载最新版本的浏览器</p>
+    </div>
+<script>
+    $("#btn").click(function(){
+        $(".alert").addClass("in");
+    });
+    $(".close").click(function(){
+        $(this).parent().removeClass("in");
+    });
+</script>
+</body>
+</html>

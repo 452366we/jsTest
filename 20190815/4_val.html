@@ -14,10 +14,36 @@
 					<span id="uname-msg"></span><br>
 		密码:<input type="password" name="upwd">
 					<span id="upwd-msg"></span><br>
-		<input type="submit" value="提交注册信息">
+		<input type="button" value="提交注册信息">
 	</form>
 <script>
     //正确时，使用图片:"<img src='img/ok.png'>"
+    $(":text").blur(function(){
+        vali($(this),3,9,"用户名必须介于3~9位之间!")
+    });
+    $(":password").blur(function(){
+        vali($(this),6,8,"用户名必须介于6~8位之间!")
+    });
+    $(":button").click(function(){
+         if(vali($(":text"),3,9,"用户名必须介于3~9位之间!")==false){
+            $(":text")[0].focus();
+        }else if(vali($(":password"),6,8,"用户名必须介于6~8位之间!")==false){
+            $(":password")[0].focus();
+        }else{
+            alert("注册成功！")
+        }
+    })
+    function vali($this,minlen,maxlen,msg){
+        var $span=$this.next();
+        var $value=$this.val();
+        if($value.length>=minlen && $value.length<=maxlen){
+            $span.html(`<img src="img/ok.png">`);
+            return true
+        }else{
+            $span.html(`<img src="img/err.png">${msg}`);
+            return false;
+        }
+    }
     //姓名错误时: "<img src='img/err.png'>用户名必须介于3~9位之间!"
     //密码错误时: "<img src='img/err.png'>密码必须介于6~8位之间!"
     //阻止默认行为: e.preventDefault();
