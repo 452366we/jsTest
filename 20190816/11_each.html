@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>11_each</title>
+    <script src="js/jquery-1.11.3.js"></script>
+</head>
+<body>
+    <ul id="list">
+        <li>98</li>
+        <li>85</li>
+        <li>33</li>
+        <li>99</li>
+        <li>52</li>
+    </ul>
+<script>
+    $("ul>li").each(function(i,elem){
+        var $elem=$(elem);
+        if($elem.html()>90){
+            $elem.css("background-color","green")
+        }else if($elem.html()<60){
+            var score=parseFloat($elem.html());
+            score+=10;
+            $elem.html(score);
+        }
+    })
+</script>
+</body>
+</html>

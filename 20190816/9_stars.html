@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>9_star</title>
+    <script src="js/jquery-1.11.3.js"></script>
+    <style>
+        img { position: relative; }
+    </style>
+</head>
+<body>
+    <img id="s1" src="img/star.png"><br/>
+    <img id="s2" src="img/star.png"><br/>
+    <img id="s3" src="img/star.png"><br/>
+    <img id="s4" src="img/star.png"><br/>
+<script>
+    $("#s1").click(function(){
+        var $this=$(this);
+        if($this.is(":not(:animated)")){
+            $this.animate({
+                left:400
+            },3000)
+        }else{
+            $this.stop();
+        }
+    });
+    $("#s2").click(function(){
+        var $this=$(this);
+        if($this.is(":not(:animated)")){
+            $this
+            .animate({
+                left:400
+            },3000)
+            .animate({
+                top:200
+            },3000)
+        }else{
+            $this.stop();
+        }
+    })
+    $("#s3").click(function(){
+        
+        var $this=$(this);
+        if($this.is(":not(:animated)")){
+            $this
+            .animate({
+                left:400,
+                top:200
+            },3000)
+        }else{
+            $this.stop();
+        }
+    })
+    $("#s4").click(function(){
+        var $this=$(this);
+        if($this.is(":not(:animated)")){
+            $this.animate({
+                marginTop:-200,
+                width:"120%",
+                height:"120%",
+                opacity:0
+            },
+            3000,
+            function(){
+                $(this).hide()
+            })
+        }else{
+            $this.stop();
+        }
+        
+    })
+</script>
+</body>
+</html>

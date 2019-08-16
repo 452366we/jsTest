@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4_trigger</title>
+    <script src="js/jquery-1.11.3.js"></script>
+</head>
+<body>
+    <!--
+    <h1>与服务器进行通信的三步</h1>
+    <button id="bt0">连接到服务器</button>
+    <button id="bt1">给服务器发消息</button>
+    <button id="bt2">断开与服务器的链接</button>
+    <hr/>
+    <button id="bt99">一次性触发“连接-发消息-断开”三个处理函数</button>-->
+    <input type="text"><button>百度一下</button>
+<script>
+    $(function(){
+        $(":text").focus().keydown(function(e){
+            if(e.keyCode==13){
+                //$("button").trigger("click");
+                $("button").click();
+            }
+        }).on("input",function(){
+            $("button").click();
+        });
+        $("button").click(function(){
+            var input=$(":text").val().trim();
+            if(input!==""){
+                console.log(`查询${input}相关的内容`);
+            }
+        })
+    })
+</script>
+</body>
+</html>

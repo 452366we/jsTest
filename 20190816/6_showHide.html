@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6_showHide</title>
+    <style>
+		body {
+		text-align: center;
+		}
+		ul {
+		list-style: none;
+		}
+		li {
+		margin: 0;
+		padding: 0;
+		display: inline-block;
+		width: 30%;
+		}
+  	</style>
+    <script src="js/jquery-1.11.3.js"></script>
+</head>
+<body>
+	<ul id="list">
+		<li>尼康(234)</li>
+		<li>佳能(22)</li>
+		<li>索尼(932)</li>
+		<li>宾得(11)</li>
+		<li>爱国者(3234)</li>
+		<li>欧巴(32)</li>
+		<li>海鸥(2334)</li>
+		<li>卡西欧(334)</li>
+		<li>三星(834)</li>
+		<li>松下(234)</li>
+		<li>其它品牌(2343)</li>
+	</ul>
+
+	<button data-toggle="brandlist">精简显示品牌</button>
+<script>
+	$("[data-toggle=brandlist]").click(function(){
+		$("ul>li:gt(4):not(:last-child)").toggle();
+	})
+</script>
+</body>
+</html>

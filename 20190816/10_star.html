@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10_star</title>
+    <script src="js/jquery-1.11.3.js"></script>
+</head>
+<body>
+    <img src="img/star.png"><br/>
+<script>
+    $("img").click(function(){
+        var $this=$(this);
+        for(var i=0;i<3;i++){
+            $this.fadeOut().fadeIn();
+        }
+        $this.fadeOut();
+    })
+</script>
+</body>
+</html>
