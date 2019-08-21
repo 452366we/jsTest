@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>20190819homework</title>
+</head>
+<body>
+<ul id="nav">
+    <li>
+        <ul>
+            <li>姓名：</li>
+            <li>{{uname}}</li>
+            <li>积分</li>
+            <li>{{score}}</li>
+        </ul>
+    </li>
+    <li>
+        <ul>
+            <li>积分</li>
+            <li>{{score}}</li>
+            <li>*</li>
+        </ul>
+    </li>
+</ul>
+<script>
+    var data={
+        uname:"dingding",
+        score:3000
+    }
+    //编写一段代码，将data中的变量，自动加载到页面中{{}}指定位置
+    //如果修改data的score属性+500,则页面上score位置自动变化
+
+    //虚拟DOM树
+    var arr=[];
+    function getChildren(parent){
+        var children=parent.children;
+        for(var c of children){
+            if(c.innerHTML.length>0){
+                getChildren(c);
+            }else{
+                if(c.innerHTML=="{{uname}}"){
+                    c.innerHTML==data.uname;
+                    arr.push({
+                        elem:c,
+                        innerHTML:"{{uname}}"
+                    });
+                }else if(c.innerHTML=="{{score}}"){
+                    c.innerHTML==data.score;
+                    arr.push({
+                        elem:c,
+                        innerHTML:"{{score}}"
+                    })
+                }
+            }
+        }
+    };
+    //至少扫描一次
+    getChildren(nav);
+
+    //响应系统
+    Object.defineProperties(data,{
+        _uname:{
+            value:data.uname,
+            writable:true,
+            enumerable:false
+        },
+        uname:{
+            get(){return this._uname},
+            set(value){
+                this._uname=value;
+                for(var obj of arr){
+                    if(obj.innerHTML=="{{uname}}"){
+                        obj.elem.innerHTML=value;
+                    }
+                }
+            }
+        },
+        _score:{
+            value:data.score,
+            writable:true,
+            enumerable:false
+        },
+        score:{
+            get(){return this._score},
+            set(value){
+                this._score=value;
+                for(var obj of arr){
+                    if(obj.innerHTML=="{{score}}"){
+                        obj.elem.innerHTML=value;
+                    }
+                }
+            }
+        },
+        enumerable:true
+    })
+    Object.seal(data);
+    //测试代码
+    data.score+=500;
+    data.score+=200;
+    data.score+=200;
+    //提示：Object.defineProperty()为每个属性添加访问器属性，在访问器属性的set方法中填写代码，实现自动更新。
+</script>
+<script>
+
+</script>
+<!--<script> 
+    class newVue{
+        constructor(options){
+            this.$vm=this;
+            this.$data=executor.data;
+            this.$el=executor.el;
+
+            //判断视图是否存在
+            if(this.$el){
+                //添加属性观察对象
+                new Observer(this.$data);
+                //创建模板编译器，解析试图
+                this.$compiler=new TemplateCompiler(this.$el,this.$vm);
+            }
+        }
+    }
+    //劫持数据
+    class Observer{
+        constructor(data){
+            this.observe(data)
+        };
+        observe(data){
+            if(!data || typeof dat !== "object"){
+                return;
+            }
+            var keys=Object.keys(data);//拿到所有的属性(key)转为数组
+            keys.forEach((key)=>{
+                this.defineReactive(data,key,data[key]);
+            })
+        };
+        defineReactive(obj,key,val){
+            var dep=new Dep();
+            Object.defineProperty(obj,key,{
+                enumerable:true,
+                configurable:false,
+                get(){
+                    Dep.target && dep.addSub(Dep.target);
+                    return val;
+                },
+                set(newVal){
+                    val=newVal;
+                    dep.notify();
+                }
+            })
+        }
+    }
+    //模板实例解析
+    class TemplateCompiler{
+        constructor(el,vm){
+            //缓存
+            this.vm=vm;
+            this.el=this.isElementNode(el)?el:document.querySelector(el);
+            //判断视图是否存在
+            if(this.el){
+                //把模板放入内存（片段）
+                var fragment=this.nodeToFragment(this.el);
+                //解析模板
+                this.compile(fragment);
+                //将内存结果返回页面
+                this.el.appendChild(fragment);
+            }
+        }
+        //工具方法
+        isElementNode(node){
+            return node.nodeType===1 //1:元素节点
+        }
+        isTextNode(node){
+            return node.nodeType===3 //3.文本节点
+        }
+        toArray(arr){
+            return [].slice.call(arr); //类数组转数组
+        }
+        isDerective(attrName){
+            return attrName.indexOf("v-") >= 0; //判断属性中是否有v-开头属性
+        }
+        //将模板存入内存，等待解析
+        nodeToFragment(node){
+            var fragment=document.createDocumentFragment(),
+                child;
+            //将模板内容存入内存
+            while(child==node.firstChild){
+                fragment.appendChild(child);
+            }
+            //返回片段
+            return fragment;
+        }
+        compile(parentNode){
+            var childNode=parentNode.childNode,
+                compiler=this;
+            //遍历
+            this.toArray(childNodes).forEach(node)=>{
+                //判断节点类型
+                if(compiler.isElementNode(node)){
+                    compiler.compileElement(node);
+                }else{
+                    var textReg=/\{\{(.+)\}\}/;
+                    var expr=node.innerHTML;
+                    if(textReg.test(expr)){
+                        expr=RegExp.$1;//缓存最近一次的正则的值
+                        //调用方法编译
+                        compiler.compileText(node,expr);//如果还有子节点，继续解析
+                    }
+                }
+            }
+         }
+        //解析元素节点方法
+        compileElement(node){
+            var arrs=node.attributes;
+            self=this;
+            //遍历属性
+            this.toArray(arrs).forEach(attr=>{
+                var attrName=attr.name;
+                if(self.isDerective(attrName)){
+                    var type=attrName.substr(2);
+                    var expr=attr.value;
+                    //编译工具函数
+                    CompilerUntils[type](node,self.vm,expr);
+                }
+            })
+        }
+        //解析表达式
+        compileText(node,expr){
+            CompilerUntils.text(node,this.vm,expr);
+        }
+    }
+
+    //编译工具函数
+    CompilerUntils={
+        //解析text指令
+        text(node,vm,expr){
+            //第一次观察
+            //1.找到跟新规则对象的方法
+            var updateFn=this.update["textUpdate"];
+            //执行方法
+            updateFn && updateFn(node,vm.$data[expr]); 
+            //if(updateFn){updateFn(node,vm.$data[expr])}
+
+            //第n+1次观察
+            new Watcher(vm,expr,(newVal)=>{
+                updateFn && updateFn(node,vm.$data[expr]);
+            })
+        },
+        //解析model指令
+        model(node,vm,expr){
+            //1.找到跟新规则对象的方法
+            var updateFn=this.update["textUpdate"];
+            //执行方法
+            updateFn && updateFn(node,vm.$data[expr]); 
+            //if(updateFn){updateFn(node,vm.$data[expr])}
+
+            //第n+1次观察
+            new Watcher(vm,expr,(newVal)=>{
+                updateFn && updateFn(node,vm.$data[expr]);
+            })
+            //视图变化
+            node.addEventListener("input",(e)=>{
+                var newVal=e.target.value;
+                //将值放入数据
+                vm.$data[expr]=newVal;
+            })
+        },
+        update:{
+            textUpdate(node,value){
+                node.innerHTML;
+            },
+            modelUpdater(node,value){
+                node.value=value;
+            }
+        }
+    }
+    //发布者
+    class Dep{
+        constructor(){
+            this.subs=[];
+        },
+        addSub(sub){
+            this.subs.push(sub);
+        },
+        //通知
+        notify(){
+            this.subs.forEach((sub)=>{
+                sub.update()
+            })
+        }
+    }
+    //订阅者
+    class Watcher{
+        constructor(vm,expr,cb){
+            this.vm=vm;
+            this.expr=expr;
+            this.cb=cb;
+            this.value=this.get()
+        },
+        get({
+            Dep.target=this;
+            var value=this.vm.$data[this.expr];
+            //清空全局
+            Dep.target=null;
+            return value;
+        }),
+        update(){
+            var newValue=this.vm.$data[this.expr];
+            var oldValue=this.value;
+            if(newValue!==oldValue){
+                this.cb(newValue);
+            }
+        }
+    }
+    
+    
+    
+</script>-->
+</body>
+</html>

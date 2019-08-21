@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>9_v-model</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input @click.13="keydown" type="text" v-model="kwords"><button @click="search">百度一下</button>
+</div>
+<script>
+var vm=new Vue({
+  el:"#app",
+  data:{
+    kwords:"ddd"
+  },
+  methods:{
+      search(){
+          console.log(`查找${this.kwords}相关内容`)
+      },
+      keydown(){
+          console.log(`查找${this.kwords}相关内容`)
+      }
+  },
+  watch:{
+      kwords(){
+          this.keydown()
+      }
+  }
+})
+</script>
+</body>
+</html>

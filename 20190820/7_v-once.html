@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>7_v-once</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1 v-once>页面加载时间：{{new Date(timer).toLocaleString()}}</h1>
+    <h2>当前系统时间：{{new Date(timer).toLocaleString()}}</h2>
+</div>
+<script>
+var vm=new Vue({
+  el:"#app",
+  data:{
+    timer:new Date().getTime()
+  }
+});
+setInterval(function(){
+    vm.timer=new Date().getTime();
+},1000)
+</script>
+</body>
+</html>

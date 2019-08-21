@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4_v-show</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span>{{pno}}/{{pcount}}</span>
+        <button v-show="pno<=pcount" @click="prev">上一页</button>
+        <button v-show="pno<pcount" @click="next">下一页</button>
+    </div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            pno:1,
+            pcount:3
+        },
+        methods:{
+            prev(){
+                if(this.pno>1)
+                this.pno--;
+            },
+            next(){
+                this.pno++;
+            }
+        }
+    })
+</script>
+</body>
+</html>

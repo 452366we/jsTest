@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>12_v-model</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <select v-model="src">
+        <option value="img/bj.jpg">北京</option>
+        <option value="img/sh.jpg">上海</option>
+        <option value="img/hz.jpg">杭州</option>
+    </select>
+    <br>
+    <img :src="src">
+</div>
+<script>
+var vm=new Vue({
+  el:"#app",
+  data:{
+    src:"img/bj.jpg"
+  }
+})
+</script>
+</body>
+</html>

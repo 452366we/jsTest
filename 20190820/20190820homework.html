@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>20190820homework</title>
+  <script src="js/vue.js"></script>
+  <style>
+    #submit{
+        width:140px;
+        height:32px;
+        border-radius:4px;
+        border:none;
+        font-size:14px;
+        text-align:center;
+        cursor:pointer;
+        outline:none;
+    }
+    #submit.normal{
+        background-color:#f1b13d;
+        color:#fff;
+    }
+    #submit.disabled{
+        background-color:#e3e3e3;
+        color:#999;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+    <input @click="time" :disabled="isSubmit" type="button" :value="text" id="submit" :class="inputClass">
+</div>
+<script>
+//1.按钮倒计时
+var vm=new Vue({
+  el:"#app",
+  data:{
+    isSubmit:false,
+    text:`请点击发送验证码`,
+    inputClass:{
+        normal:true,
+        disabled:false
+    }
+  },
+  methods:{
+      time(){
+        var n=60;
+        this.isSubmit=true;
+        this.text=`${n}s后重新发送`;
+        this.inputClass.normal=false;
+        this.inputClass.disabled=true;
+        var timer=setInterval(function(){
+            n--;
+            vm.text=`${n}s后重新发送`;
+            if(n<0){
+                n=0;
+                vm.text=`请点击发送验证码`;
+                vm.inputClass.normal=true;
+                vm.inputClass.disabled=false;
+                clearInterval(timer);
+            }
+        },1000);
+      }
+  },
+  watch:{
+      
+  }
+})
+
+
+</script>
+</body>
+</html>

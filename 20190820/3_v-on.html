@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>3_v-on</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="change">+</button>
+    <span>{{n}}</span>
+    <button @click="change">-</button>
+</div>
+<script>
+var vm=new Vue({
+  el:"#app",
+  data:{
+    n:1
+  },
+  methods:{
+      change(){
+          console.log('ddd')
+          //this.n+=i;
+          //this.n<0 && (this.n=0)
+      }
+  }
+})
+</script>
+</body>
+</html>
