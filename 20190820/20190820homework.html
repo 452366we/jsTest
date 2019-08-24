@@ -50,14 +50,14 @@ var vm=new Vue({
         this.text=`${n}s后重新发送`;
         this.inputClass.normal=false;
         this.inputClass.disabled=true;
-        var timer=setInterval(function(){
+        var timer=setInterval(()=>{
             n--;
-            vm.text=`${n}s后重新发送`;
+            this.text=`${n}s后重新发送`;
             if(n<0){
                 n=0;
-                vm.text=`请点击发送验证码`;
-                vm.inputClass.normal=true;
-                vm.inputClass.disabled=false;
+                this.text=`请点击发送验证码`;
+                this.inputClass.normal=true;
+                this.inputClass.disabled=false;
                 clearInterval(timer);
             }
         },1000);

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>2_computed</title>
+  <script src="js/vue.js"></script>
+  <style>
+  ul{
+      list-style:none;
+  }
+  </style>
+</head>
+<body>
+<div id="app">
+    <h1>总计：￥{{total.toFixed(2)}}元</h1>
+    <ul @click="del">
+        <li v-for="(item,index) of cart" :index="index" :key="index"><input type="checkbox" v-model="item.is_checked"> | {{item.pid}} | {{item.pname}} | ￥{{item.price.toFixed(2)}}元 | {{item.count}} | 小计：￥{{(item.price*item.count).toFixed(2)}}元 | <button>x</button></li>
+    </ul><br>
+    <label><input value="全选" type="checkbox" v-model="cart.is_Checked">全选</label><button @click="del">删除</button>
+    <h1>总计：￥{{total.toFixed(2)}}元</h1>
+</div>
+<script>
+var vm=new Vue({
+  el:"#app",
+  data:{
+    cart:[
+        {pid:1,pname:"iphone",price:10400,count:2,is_checked:false},
+        {pid:1,pname:"sumsang",price:9699,count:2,is_checked:false},
+        {pid:1,pname:"mi",price:4999,count:2,is_checked:false}
+    ]
+  },
+  methods:{
+    del(e){
+        if(e.target.nodeName=="BUTTON"){
+            var i=parseInt(e.target.parentNode.getAttribute("index"));
+            this.cart.splice(i,1);
+        }
+    }  
+  },
+  watch:{
+
+  },
+  computed:{
+      total(){
+          return this.cart.filter(item=>item.is_checked).reduce((prev,item)=>prev+item.count*item.price,0)
+      }
+  }
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>20190823test</title>
+</head>
+<body>
+<script>
+    //字符串反转，如将'123456789'变成'987654321'的方法
+    var str='123456789'
+        //1.for循环
+        var arr=str.split('');
+        var arr1=[];
+        for(var i=0;i<arr.length;i++){
+            arr1[i]=arr[arr.length-i-1];
+        }
+        var str0=arr1.join('')
+        console.log(str0);
+        //2.charAt
+        var str1='';
+        for(var i=0;i<str.length;i++){
+            str1+=str.charAt(str.length-i-1);
+        }
+        console.log(str1);
+        //3.reverse()函数
+        var str2=str.split("").reverse().join("");
+        console.log(str2);
+        //4.Set集合 对象
+        var arr=str.split('');
+        var obj=Array.from(new Set([...arr]));
+        var str3='';
+        for(i of obj){
+            str3+=obj[arr.length-i];
+        }
+        console.log(str3)
+        //5.pop()和push()
+        var arr=str.split('');
+        var arr2=[];
+        while(arr.length>0){
+            arr2.push(arr.pop())
+        };
+        var str4=arr2.join("");
+        console.log(str4)
+    //数组去重
+    var arrM=[1, 2, 3, 3, 4, 4, 5, 5, 6, 1, 9, 3, 25, 4];
+        //1.Set ES6
+        var arrM0=Array.from(new Set(arrM));
+        console.log(arrM0);
+        //2.for ES5
+        var arrM1=[1, 2, 3, 3, 4, 4, 5, 5, 6, 1, 9, 3, 25, 4];
+        for(var i=0;i<arrM1.length;i++){
+            for(j=i+1;j<arrM1.length;j++){
+                if(arrM1[i]==arrM1[j]){
+                    arrM1.splice(j,1);
+                    j--;
+                }
+            }
+        }
+        console.log(arrM1);
+        //3.indexOf
+        var arrM2=[];
+        for(var i=0;i<arrM.length;i++){
+            if(arrM2.indexOf(arrM[i])===-1){
+                arrM2.push(arrM[i])
+            }
+        }
+        console.log(arrM2);
+        //4.sort()
+        var _arr=[1, 2, 3, 3, 4, 4, 5, 5, 6, 1, 9, 3, 25, 4];
+        _arr=_arr.sort();
+        var arrM3=[_arr[0]];
+        for(var i=1;i<_arr.length;i++){
+            if(_arr[i]!==_arr[i-1]){
+                arrM3.push(_arr[i])
+            }
+        }
+        console.log(arrM3);
+        //5.对象属性 存在问题，纯数字可以用
+        var arrM4=[];
+        var objM={};
+        for(var i=0;i<arrM.length;i++){
+            if(!objM[arrM[i]]){
+                arrM4.push(arrM[i]);
+                objM[arrM[i]]=1
+            }else{
+                objM[arrM[i]]++
+            }
+        }
+        console.log(arrM4);
+        //6.includes
+        var arrM5=[];
+        for(var i=0;i<arrM.length;i++){
+            if(!arrM5.includes(arrM[i])){//检测数组是否有某个值
+                arrM5.push(arrM[i]);
+            }
+        }
+        console.log(arrM5);
+        //7.hasOwnProperty和filter
+        var objM1={};
+        var arrM6=arrM.filter((item,index,arrM)=>{
+            return objM1.hasOwnProperty(typeof item+item)?false:(objM1[typeof item+item]=true)
+        })
+        console.log(arrM6);
+        //8.递归
+        var arrM7=[1, 2, 3, 3, 4, 4, 5, 5, 6, 1, 9, 3, 25, 4];
+        arrM7.sort(function(a,b){
+            return a-b;
+        })
+        function loop(index){
+            if(index>=1){
+                if(arrM7[index]===arrM7[index-1]){
+                    arrM7.splice(index,1);
+                }
+                loop(index-1)
+            }
+        }
+        loop(arrM7.length-1);
+        console.log(arrM7);
+        //9.Map数据结构
+        var map=new Map();
+        var arrM8=[];
+        for(var i=0;i<arrM.length;i++){
+            if(map.has(arrM[i])){
+                map.set(arrM[i],true);
+            }else{
+                map.set(arrM[i],false);
+                arrM8.push(arrM[i]);
+            }
+        }
+        console.log(arrM7);
+        //10.reduce+includes
+        var arrM9=[1, 2, 3, 3, 4, 4, 5, 5, 6, 1, 9, 3, 25, 4];
+        arrM9=arrM9.reduce((prev,cur)=>prev.includes(cur)?prev:[...prev,cur],[]);
+        console.log(arrM9);
+        //11.[...new Set(arr)]
+        var arrM10=[...new Set(arrM)];
+        console.log(arrM10);
+</script>
+</body>
+</html>

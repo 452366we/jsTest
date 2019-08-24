@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>3_filter</title>
+  <script src="js/vue.js"></script>
+  <script>
+    Vue.filter(
+        "sexFilter",
+        function(oldValue){
+            return oldValue==1?'男':'女'
+        }
+    );
+    Vue.filter(
+        "timeFilter",
+        function(oldValue){
+            return new Date(oldValue).toLocaleString();
+        }
+    );
+    Vue.filter(
+        "statusFilter",
+        function(oldValue){
+            return oldValue==0?'未付款':
+                   oldValue==10?'已付款':
+                   oldValue==20?'已发货':
+                                '已签收' 
+        }
+    )
+  </script>
+</head>
+<body>
+<div id="app">
+    <h1>性别：{{sex | sexFilter}}</h1>
+    <h1>下单时间：{{orderTime | timeFilter}}</h1>
+    <h1>订单状态：{{orderStatus | statusFilter}}</h1>
+</div>
+<script>
+var vm = new Vue({
+  el:"#app",
+  data:{
+      sex:1,
+      orderTime:1566359895109,
+      orderStatus:0
+  }
+})
+</script>
+</body>
+</html>
