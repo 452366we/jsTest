@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>20190823test</title>
+</head>
+<body>
+<script>
+    //看下列代码，输出什么？解释原因
+    var a=null;alert(typeof a);
+    //Object js类型值是存在32bit单元中的 32位中有1-3位表示TYPE TAG，而表示object的三位正好是000 null是机器码空指针（0x00 大部分是） 也就是说空指针的对象标记也是0 所以最终typeof判断为对象了
+    var a =new Object();
+    a.value=1;
+    b=a;
+    b.value=2;
+    alert(a.value);
+    //2 对象操作 地址传值
+    //转驼峰
+    function camelCase(str){
+        var str="get-element-by-id";
+        var arr=str.split('-');
+        var Arr=[];
+        for(var i=0;i<arr.length;i++){
+             var strArr=arr[i].split('');
+             if(i==0){
+                 strArr[0]=strArr[0]
+             }else{
+                strArr[0]=strArr[0].toUpperCase();
+             }
+             Arr.push(...strArr);
+        }
+        var newStr=Arr.join("");
+        return newStr;   
+    }
+    var foo="get-element-by-id";
+    console.log(camelCase(foo));
+</script>
+</body>
+</html>
