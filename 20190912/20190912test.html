@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>20190912test</title>
+</head>
+<body>
+<script>
+    //1.简述cookie、sessionStorage、localStorage的区别？
+    见区别图 数据声明周期、存放数据大小、与服务器通信、易用性、共同点来答
+    (1)数据声明周期：
+    cookie：生成时就会被指定一个maxAge值，这就是cookie的生存周期，在这个周期内cookie有效，默认关闭浏览器失效
+    sessionStorage：页面会话期间可用
+    localStorage：除非数据被清除，否则一直存在
+    (2)存放数据大小：
+    cookie：4k左右(因为每次http请求都会携带cookie)
+    sessionStorage和localStorage：一般5M或更大
+    (3)与服务器通信：
+    cookie：由对服务器的请求来传递，每次都会携带在http头中，如果使用cookie保存过多数据会带来性能问题
+    sessionStorage和localStorage：数据不是由每个服务器请求传递的，而是只有在请求时使用数据，不参与和服务器通信
+    (4)易用性：
+    cookie：cookie需要自己家封装setCookie，getCookie
+    sessionStorage和localStorage：可以用原生接口，也可以再次封装来对Object和Array有更好的支持
+    (5)共同点：
+    都是保存在浏览器端，和服务器端的session机制不同
+    //2.清除浮动的方式有哪些？
+    (1)空标签清除浮动 .clearfix{clear:both}
+    (2)父元素设置overflow不是visible BFC
+    (3)父元素设置display为inline-block、table-cell、table-caption BFC
+    (4)父元素设置float不为none BFC
+    (5)父元素设置position为absolute或fixed BFC
+    (6)伪元素::after{content:'';display:block;clear:both} 伪元素
+</script>
+</body>
+</html>

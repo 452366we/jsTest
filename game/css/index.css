@@ -1,0 +1,28 @@
+#container{
+    width:100%
+}
+.allCanvas{
+    width:1200px;
+    height:600px;
+    margin:auto;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    position:absolute;
+}
+#canvas1,#canvas2{
+    position:absolute;
+    width:800px;
+    height:600px;
+    left:50%;
+    margin-left:-400px;
+    top:50%;
+    margin-top:-300px
+}
+#canvas1{
+    z-index:2000;
+}
+#canvas2{
+    z-index:1000;
+}
