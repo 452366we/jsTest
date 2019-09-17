@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>20190916test</title>
+</head>
+<body>
+<script>
+    //1.$(this)和this关键词在jQuery中有何不同？
+    (1)在jQuery中，“$()”是“jQuery()”入口函数的不同写法，其返回的是一个jquery对象，可使用jQuery的包的方法
+    (2)this表示的是一个JavaScript的dom对象，而$(this)表示的是将dom对象转换为了jquery对象
+    (3)this指向和$(this)指向：this指向的是当前上下文对象，而$(this)指向的是一个jquery上下文对象，二者有可能相同，也有可能不同
+    //2.判断一个字符串中出现次数最多的字符，统计这个次数?例如：var str='dasfadaaaaaaaaaaaaaaaaaaaaaafd'
+    // (1) hash表
+    let str='dasfadaaaaaaaaaaaaaaaaaaaaaafd';
+    function maxHash(str){
+        arr=[...str];
+        let obj={};
+        let max=0;
+        let maxStr;
+        arr.forEach((items,index)=>{
+            if(!obj[items]){
+                obj[items]=1;
+            }else{
+                obj[items]++
+            }
+        })
+        for(let i in obj){
+            if(max<obj[i]){max=obj[i];maxStr=i}
+        }
+        return {max,maxStr}
+    }
+    // (2) 正则
+    function maxReg(str){
+        str=str.split('').sort().join('');
+        let obj=str.match(/(\w)\1*/g).sort();
+        let max=obj[0][0];
+        let maxStr=obj[0].length;
+        return {max,maxStr}
+    }
+</script>
+</body>
+</html>

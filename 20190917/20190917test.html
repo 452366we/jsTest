@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>20190912test</title>
+</head>
+<body>
+<script>
+    //1.写一个function清除字符串前后的空格(兼容所有浏览器)
+    String.prototype.trim=function(){
+        return this.replace(/(^\s*)|(\s*$)/g,'')
+    }
+    //2.怎么让chrome支持小于12px的文字？
+    -webkit-transform:scale()
+    //3.before和after的双冒号和单冒号有什么区别？
+    (1)对before和after而言，单双冒号都表示伪元素，仅仅是写法的差别。
+    (2)单冒号是css2的写法，兼容性更好；双冒号是css3的写法，某些低版本浏览器不支持
+    (3)在h5开发中建议使用双冒号
+    //3(扩展).伪元素和伪类的区别是什么？
+    (1)定义区别：伪类(w3c描述：用于向某些选择器添加特殊的效果)用于选择DOM树之外的信息，或是不能用简单选择器进行表示的信息，本质是弥补选择器的不足；伪元素(w3c描述：用于将特殊的效果添加到某些选择器)是DOM树没有定义的虚拟元素，本质是创建了一个有内容的虚拟容器
+    (2)语法区别：css3中，伪类和伪元素有所区别，伪类以单冒号开头，伪元素以双冒号开头，但由于历史遗留问题，单冒号伪元素浏览器也继续支持
+    (3)使用区别：可同时使用多个伪类，但只能同时使用一个伪元素。伪类不创造新元素，存在于DOM文档中(无标签，找不到，只有符合触发条件才能看到)，逻辑上存在于文档树却只能在特定条件才能看到；伪元素创造新的元素，不存在于DOM文档中，是虚拟元素，虽然逻辑上存在，但却并不实际存在于文档树中
+    (4)常见伪类和伪元素：
+        <a>伪类 :active(css1)/:hover(css1)/:visited(css1)/:first-child(css2)/:lang(css2)/:focus(css2)/:enable(css3)/:disable(css3)/:checked(css3)/:target(css3)
+        <b>伪元素 ::first-letter(css1)/::first-line(css1)/::after(css2)/::before(css2)/::selection(css3)
+</script>
+</body>
+</html>
